@@ -74,11 +74,11 @@ Java:
 ---
 
 ## Reflexiones
+### Que has mejorado con este proyecto?
 This project let me know a new Design Patter focused on Behavior to different of other Pattern that are focused on Creation of Objects. The great advantage of this pattern is that let us execute from a criteria how the behavior of the Request is going to be execute. All this from a COMMANDS that do this work of execute and check from a criteria. And after we have a Invoke Class which threat all Commands to execute them.
 Other points to mention:
 - Other point it's that I use my own ID Random generator, it's probably that due to it's random two Order Object have the same ID. So in the future I will change the Random Id generator to use the UUID Class to generate unique ID's.
 - I used Streams Java feature and StringBuilder and Formatter to practice them
-### Que has mejorado con este proyecto?
 
 
 **[⬆ back to top](#tabla-de-contenidos)**
