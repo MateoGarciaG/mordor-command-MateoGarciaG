@@ -14,7 +14,7 @@ This Project belongs to a serie of projects to practice the most use Design Patt
 All branches structure with their commits are in my Repository of my Personal Account too:
 
 This repository is to upload the task of this project.
-https://github.com/MateoGarciaG/Mordor-Command-Project
+https://github.com/MateoGarciaG/mordor-command-MateoGarciaG
 
 
 Test Cases are from the user @dfleta GitHub. The description of the task of this project that he mentions. It was the test cases cannot be modificated.
