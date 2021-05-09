@@ -14,6 +14,18 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import org.pinpong.mordorcommand.interfaces.Pedido;
+import org.pinpong.mordorcommand.interfaces.PedidoPeligroso;
+import org.pinpong.mordorcommand.interfaces.Procesador;
+import org.pinpong.mordorcommand.interfaces.TratamientoPedido;
+import org.pinpong.mordorcommand.orders.PedidoInternacional;
+import org.pinpong.mordorcommand.orders.PedidoNacional;
+import org.pinpong.mordorcommand.orders.PedidoPeligrosoOrden;
+import org.pinpong.mordorcommand.processor.Oficina;
+import org.pinpong.mordorcommand.treatments.TratamientoPedidoInternacional;
+import org.pinpong.mordorcommand.treatments.TratamientoPedidoMultiple;
+import org.pinpong.mordorcommand.treatments.TratamientoPedidoPeligroso;
+
 /**
  * Unit test for simple App.
  */

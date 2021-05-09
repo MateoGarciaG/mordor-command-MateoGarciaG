@@ -44,6 +44,7 @@ Main App Code for this Kata Project provided by @dfleta Github User
 ## Diagrama UML
 This UML Diagram is not mine. UML Diagram by @dfleta User GitHub
 This UML Diagram use the Command Pattern.
+The Package Structure will be the same as the UML Diagram of @dfleta due to in the README of his project put: "Respeta la estructura del proyecto indicada en el nombre de los paquetes que se indican en los casos test.". So indicates that the package structure must be respected.
 ![Diagrama UML](./doc/UML_Diagram/uml_diagram_mordor-command.gif)
 
 
