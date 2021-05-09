@@ -9,9 +9,9 @@ public class ConcreteDangerousOrder implements DangerousOrder {
     private int weight = 0;
     private String instructions = null;
 
-    public ConcreteDangerousOrder(String destiny, int weight, String instructions) {
+    public ConcreteDangerousOrder(String destiny, String instructions) {
         this.destiny = destiny;
-        this.weight = weight;
+//        this.weight = weight;
         this.instructions = instructions;
     }
 

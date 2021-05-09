@@ -22,9 +22,9 @@ public class Office implements Processor {
         Formatter formatter = new Formatter(stringBuilder);
 
         if (checkTreat) {
-            formatter.format("Destiny: %1$s. STATUS: %2$s", order.destiny(), Status.ACCEPT.name());
+            formatter.format("%1$s %2$s", order.destiny(), Status.ACCEPT.name());
         } else {
-            formatter.format("Destiny: %1$s. STATUS: %2$s", order.destiny(), Status.REJECTED.name());
+            formatter.format("%1$s %2$s", order.destiny(), Status.REJECTED.name());
         }
         
         formatter.close();

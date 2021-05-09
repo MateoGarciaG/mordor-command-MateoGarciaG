@@ -14,17 +14,17 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import org.pinpong.mordorcommand.interfaces.Pedido;
-import org.pinpong.mordorcommand.interfaces.PedidoPeligroso;
-import org.pinpong.mordorcommand.interfaces.Procesador;
-import org.pinpong.mordorcommand.interfaces.TratamientoPedido;
-import org.pinpong.mordorcommand.orders.PedidoInternacional;
-import org.pinpong.mordorcommand.orders.PedidoNacional;
-import org.pinpong.mordorcommand.orders.PedidoPeligrosoOrden;
-import org.pinpong.mordorcommand.processor.Oficina;
-import org.pinpong.mordorcommand.treatments.TratamientoPedidoInternacional;
-import org.pinpong.mordorcommand.treatments.TratamientoPedidoMultiple;
-import org.pinpong.mordorcommand.treatments.TratamientoPedidoPeligroso;
+import org.pinpong.mordorcommand.interfaces.Order;
+import org.pinpong.mordorcommand.interfaces.DangerousOrder;
+import org.pinpong.mordorcommand.interfaces.Processor;
+import org.pinpong.mordorcommand.interfaces.OrderTreatment;
+import org.pinpong.mordorcommand.orders.InternationalOrder;
+import org.pinpong.mordorcommand.orders.NationalOrder;
+import org.pinpong.mordorcommand.orders.ConcreteDangerousOrder;
+import org.pinpong.mordorcommand.processor.Office;
+import org.pinpong.mordorcommand.treatments.InternationalOrderTreatment;
+import org.pinpong.mordorcommand.treatments.MultipleOrderTreatment;
+import org.pinpong.mordorcommand.treatments.DangerousOrderTreatment;
 
 /**
  * Unit test for simple App.
@@ -32,10 +32,10 @@ import org.pinpong.mordorcommand.treatments.TratamientoPedidoPeligroso;
 public class OrdersTest
 {
     /**
-     * Crea una clase TratamientoPedidoInternacional que permita tratar
-     * pedidos internacionales.
+     * Crea una clase InternationalOrderTreatment que permita treat
+     * Orders internacionales.
      * 
-     * La clase permite tratar todos los pedidos excepto 
+     * La clase permite treat todos los Orders excepto 
      * los que van a Mordor.
      * 
      * Crea las clases necesarias que se requieren en los casos test
@@ -44,32 +44,32 @@ public class OrdersTest
     @Test
 	public void test_Mordor() {	
 
-        Pedido pedidoInt = new PedidoInternacional("Mordor", 100);
-        assertEquals("Mordor", pedidoInt.destino());
+        Order OrderInt = new InternationalOrder("Mordor", 100);
+        assertEquals("Mordor", OrderInt.destiny());
 
-		TratamientoPedido tratamientoKO = new TratamientoPedidoInternacional(
-                                                    (PedidoInternacional) pedidoInt);
+		OrderTreatment tratamientoKO = new InternationalOrderTreatment(
+                                                    (InternationalOrder) OrderInt);
         assertNotNull(tratamientoKO);
-        assertFalse(tratamientoKO.tratar());			
+        assertFalse(tratamientoKO.treat());			
 	}
 
 	@Test
 	public void test_Comarca() {
 
-        Pedido pedidoInt = new PedidoInternacional("Comarca", 100);
-        assertEquals("Comarca", pedidoInt.destino());
+        Order OrderInt = new InternationalOrder("Comarca", 100);
+        assertEquals("Comarca", OrderInt.destiny());
 
-		TratamientoPedido tratamientoOK = new TratamientoPedidoInternacional(
-                                                    (PedidoInternacional) pedidoInt);
+		OrderTreatment tratamientoOK = new InternationalOrderTreatment(
+                                                    (InternationalOrder) OrderInt);
         assertNotNull(tratamientoOK);        
-        assertTrue(tratamientoOK.tratar());
+        assertTrue(tratamientoOK.treat());
     }
 
     /**
-     * Crea una clase TratamientoPedidoPeligroso que permita tratar
-     * pedidos peligrosos.
+     * Crea una clase DangerousOrderTreatment que permita treat
+     * Orders peligrosos.
      * 
-     * La clase permite tratar todos los pedidos segun sus
+     * La clase permite treat todos los Orders segun sus
      * instrucciones excepto aquellos cuya instruccion sea 
      * "No ponerselo en el dedo". 
      * 
@@ -77,32 +77,32 @@ public class OrdersTest
      * respetando los constructores que se exigen.
      */
     @Test
-    public void test_pedido_peligroso_KO() {
+    public void test_Order_peligroso_KO() {
 
-        Pedido pedidoConPeligro = new PedidoPeligrosoOrden("Monte del destino", 
+        Order OrderConPeligro = new ConcreteDangerousOrder("Monte del destiny", 
                                                            "No ponerselo en el dedo");
-        assertEquals("Monte del destino", pedidoConPeligro.destino());
+        assertEquals("Monte del destiny", OrderConPeligro.destiny());
 
-        TratamientoPedido tratamientoKO = new TratamientoPedidoPeligroso(
-                                                    (PedidoPeligroso) pedidoConPeligro);
+        OrderTreatment tratamientoKO = new DangerousOrderTreatment(
+                                                    (DangerousOrder) OrderConPeligro);
         assertNotNull(tratamientoKO);
-        assertFalse(tratamientoKO.tratar());
+        assertFalse(tratamientoKO.treat());
     }
 
     @Test
-    public void test_pedido_peligroso_OK() {
+    public void test_Order_peligroso_OK() {
 
-        Pedido pedidoConPeligro = new PedidoPeligrosoOrden("Cima de los vientos", 
+        Order OrderConPeligro = new ConcreteDangerousOrder("Cima de los vientos", 
                                                            "No urgarse en las uñas con este puñal");
-        assertEquals("Cima de los vientos", pedidoConPeligro.destino());
+        assertEquals("Cima de los vientos", OrderConPeligro.destiny());
 
-        TratamientoPedido tratamientoOK = new TratamientoPedidoPeligroso(
-                                                    (PedidoPeligroso) pedidoConPeligro);
-        assertTrue(tratamientoOK.tratar());
+        OrderTreatment tratamientoOK = new DangerousOrderTreatment(
+                                                    (DangerousOrder) OrderConPeligro);
+        assertTrue(tratamientoOK.treat());
     }
 
     /**
-     * Añade a las clases PedidoInternacional y PedidoPeligrosoOrden
+     * Añade a las clases InternationalOrder y ConcreteDangerousOrder
      * una identificador Id de tipo String
      * autogenerado haciendo uso de la clase UUID de Java
      * https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html
@@ -110,8 +110,8 @@ public class OrdersTest
     @Test
     public void test_UUID_generator() {
 
-        PedidoInternacional internacional = new PedidoInternacional("Mordor", 10);
-        PedidoPeligrosoOrden peligroso = new PedidoPeligrosoOrden("Cima de los vientos", 
+        InternationalOrder internacional = new InternationalOrder("Mordor", 10);
+        ConcreteDangerousOrder peligroso = new ConcreteDangerousOrder("Cima de los vientos", 
                                                                   "No urgarse en las uñas con este puñal");
         assertNotNull(internacional.getId());
         assertNotNull(peligroso.getId());
@@ -120,44 +120,44 @@ public class OrdersTest
     }
 
     /**
-     * Añade una clase para los pedidos nacionales.
+     * Añade una clase para los Orders nacionales.
      */
 
     @Test
-    public void test_pedido_nacional_UUDI() {
+    public void test_Order_nacional_UUDI() {
 
-        PedidoInternacional internacional = new PedidoInternacional("Mordor", 10);
+        InternationalOrder internacional = new InternationalOrder("Mordor", 10);
         assertNotNull(internacional);
-        PedidoNacional nacional = new PedidoNacional("Gondor", 50);
+        NationalOrder nacional = new NationalOrder("Gondor", 50);
         assertNotNull(nacional);
         assertNotEquals(internacional.getId(), nacional.getId());
     }
     
     /**
-     * Construye una oficina que procese todo tipo de pedidos.
+     * Construye una Office que procese todo tipo de Orders.
      * 
-     * La oficina procesa los pedidos en funcion de si
-     * es posible tratarlos o no segun las reglas de cada
-     * tipo de pedido
+     * La Office process los Orders en funcion de si
+     * es posible treatlos o no segun las reglas de cada
+     * tipo de Order
      */
 
     @Test
-    public void test_interface_procesador() {
+    public void test_interface_Processor() {
         
-        Procesador correos = new Oficina();
-        TratamientoPedido pedidoInt = new TratamientoPedidoInternacional(
-                                            new PedidoInternacional("Comarca", 100));
-        assertTrue(correos.procesa(pedidoInt));
+        Processor correos = new Office();
+        OrderTreatment OrderInt = new InternationalOrderTreatment(
+                                            new InternationalOrder("Comarca", 100));
+        assertTrue(correos.process(OrderInt));
 
-        TratamientoPedido pedidoConPeligro = new TratamientoPedidoPeligroso(
-                                                 new PedidoPeligrosoOrden("Cima de los vientos", 
+        OrderTreatment OrderConPeligro = new DangerousOrderTreatment(
+                                                 new ConcreteDangerousOrder("Cima de los vientos", 
                                                 "No urgarse en las uñas con este puñal"));
-        assertTrue(correos.procesa(pedidoConPeligro));
+        assertTrue(correos.process(OrderConPeligro));
     }
 
     /**
-     * La oficina puede enviar un mensaje que informe del
-     * status del pedido, en funcion de si ha sido posible procesarlo.
+     * La Office puede enviar un mensaje que informe del
+     * status del Order, en funcion de si ha sido posible processrlo.
      * 
      * Hace uso de un tipo enumerado STATUS con las constantes
      * ACEPTADO y RECHAZADO.
@@ -166,85 +166,85 @@ public class OrdersTest
     @Test
     public void test_printar_status() {
 
-        Oficina correos = new Oficina();
-        PedidoInternacional toComarcaWithLove = new PedidoInternacional("Comarca", 100);
-        TratamientoPedido pedidoInt = new TratamientoPedidoInternacional(toComarcaWithLove);
+        Office correos = new Office();
+        InternationalOrder toComarcaWithLove = new InternationalOrder("Comarca", 100);
+        OrderTreatment OrderInt = new InternationalOrderTreatment(toComarcaWithLove);
 
-        assertTrue(correos.procesa(pedidoInt));
-        assertEquals("Comarca ACEPTADO", correos.printarStatus(
-                                            correos.procesa(pedidoInt), toComarcaWithLove));
+        assertTrue(correos.process(OrderInt));
+        assertEquals("Comarca ACCEPT", correos.showStatus(
+                                            correos.process(OrderInt), toComarcaWithLove));
 
-        PedidoPeligroso pedidoConPeligro = new PedidoPeligrosoOrden("Monte del destino", 
+        DangerousOrder OrderConPeligro = new ConcreteDangerousOrder("Monte del destiny", 
                                                                     "No ponerselo en el dedo");
-        TratamientoPedido tratamientoKO = new TratamientoPedidoPeligroso(pedidoConPeligro);
+        OrderTreatment tratamientoKO = new DangerousOrderTreatment(OrderConPeligro);
 
-        assertFalse(correos.procesa(tratamientoKO));
-        assertEquals("Monte del destino RECHAZADO", correos.printarStatus(
-                                                        correos.procesa(tratamientoKO), 
-                                                                        pedidoConPeligro));
+        assertFalse(correos.process(tratamientoKO));
+        assertEquals("Monte del destiny REJECTED", correos.showStatus(
+                                                        correos.process(tratamientoKO), 
+                                                                        OrderConPeligro));
 
     }
 
     /**
-     * Crea una clase TratamientoPedidoMultiple que permita tratar
-     * pedidos multiples.
+     * Crea una clase MultipleOrderTreatment que permita treat
+     * Orders multiples.
      * 
-     * La clase permite tratar el pedido multiple si 
-     * el peso total de los pedidos es mayor que 0
+     * La clase permite treat el Order multiple si 
+     * el peso total de los Orders es mayor que 0
      * y 
      * el numero de bultos coincide con el numero de
-     * pedidos individuales que forman el pedido multiple.
+     * Orders individuales que forman el Order multiple.
      * 
      * Crea las clases necesarias que se requieren en los casos test
      * respetando los constructores que se exigen.
      */
 
     @Test
-    public void test_tratamiento_pedido_multiple_tratar() {
+    public void test_tratamiento_Order_multiple_treat() {
 
         /**
-         * Crea una colección de tres pedidos nacionales, a "Gondor", "Minas Tirith", "Rohan"
+         * Crea una colección de tres Orders nacionales, a "Gondor", "Minas Tirith", "Rohan"
          * con un peso de 10 cada uno.
          * 
-         * Pasasela a TratamientoPedidosMultiple en su constructor.
+         * Pasasela a OrderTreatmentsMultiple en su constructor.
          */
 
-        Set<Pedido> pedidos = new HashSet<>();
-        List<String> destinos = Arrays.asList("Gondor", "Minas Tirith", "Rohan");
+        Set<Order> Orders = new HashSet<>();
+        List<String> destinys = Arrays.asList("Gondor", "Minas Tirith", "Rohan");
         List<Integer> pesos = Arrays.asList(10, 10, 10);
         
-        for (int i=0; i<destinos.size(); i++) {
-            pedidos.add(new PedidoNacional(destinos.get(i), pesos.get(i)));
+        for (int i=0; i<destinys.size(); i++) {
+            Orders.add(new NationalOrder(destinys.get(i), pesos.get(i)));
         }
-        assertEquals(3, pedidos.size());
+        assertEquals(3, Orders.size());
 
-        TratamientoPedidoMultiple pedidosMult = new TratamientoPedidoMultiple(pedidos);
-        assertNotNull(pedidosMult);
+        MultipleOrderTreatment OrdersMult = new MultipleOrderTreatment(Orders);
+        assertNotNull(OrdersMult);
 
         /**
-         * Completa los metodos del pedido multiple.
+         * Completa los metodos del Order multiple.
          * Se valorara el uso de streams.
          * 
-         * calcularTotalBultos
+         * calculateNumLumps
          * @param   void
          * @return  void
          *   
-         * calcularPesoTotal
+         * calculateTotalWeight
          * @param   void
          * @return  void
          * 
          */
 
-        pedidosMult.calcularTotalBultos();
-        assertEquals(3, pedidosMult.getNumBultos(), 0);
+        OrdersMult.calculateNumLumps();
+        assertEquals(3, OrdersMult.getNumLumps(), 0);
 
-        pedidosMult.calcularPesoTotal();
-        assertEquals(30, pedidosMult.getPesoTotal(), 0);
+        OrdersMult.calculateTotalWeight();
+        assertEquals(30, OrdersMult.getTotalWeight(), 0);
 
         /**
-         * Trata el pedido multiple.
+         * Trata el Order multiple.
          */
-        assertTrue(pedidosMult.tratar());
+        assertTrue(OrdersMult.treat());
     }
 }
 
