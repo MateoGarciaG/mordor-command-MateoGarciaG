@@ -11,6 +11,7 @@ public class NationalOrder implements Order {
     public NationalOrder(String destiny, int weight) {
         this.destiny = destiny;
         this.weight = weight;
+        this.id = this.generateRandomId();
     }
 
 

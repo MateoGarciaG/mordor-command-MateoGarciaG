@@ -1,19 +1,25 @@
 package org.pinpong.mordorcommand.orders;
 
-import org.pinpong.mordorcommand.interfaces.Order;
+import org.pinpong.mordorcommand.interfaces.DangerousOrder;
 
-public class InternationalOrder  implements Order{
+public class ConcreteDangerousOrder implements DangerousOrder {
 
-    private String id = null;
+    private final String id = null;
     private String destiny = null;
     private int weight = 0;
+    private String instructions = null;
 
-    public InternationalOrder(String destiny, int weight) {
+    public ConcreteDangerousOrder(String destiny, int weight, String instructions) {
         this.destiny = destiny;
         this.weight = weight;
+        this.instructions = instructions;
         this.id = this.generateRandomId();
     }
 
+    @Override
+    public String instructions() {
+        return this.instructions;
+    }
 
     @Override
     public int weight() {
