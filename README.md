@@ -68,6 +68,7 @@ Java:
 
 ## Reflexiones
 
+- Other point it's that I use my own ID Random generator, it's probably that due to it's random two Order Object have the same ID. So in the future I will change the Random Id generator to use the UUID Class to generate unique ID's.
 ### Que has mejorado con este proyecto?
 
 
