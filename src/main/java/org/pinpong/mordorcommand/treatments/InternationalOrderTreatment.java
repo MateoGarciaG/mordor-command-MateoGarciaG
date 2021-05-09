@@ -14,6 +14,7 @@ public class InternationalOrderTreatment implements OrderTreatment {
 
     @Override
     public boolean treat() {
+        // Si no es igual a Mordor entonces es TRUE
         return !this.internationalOrder.destiny().equals("Mordor");
     }
 
