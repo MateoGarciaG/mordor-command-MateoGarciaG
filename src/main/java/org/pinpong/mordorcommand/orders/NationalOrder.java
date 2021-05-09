@@ -16,12 +16,12 @@ public class NationalOrder implements Order {
 
     @Override
     public int weight() {
-        return 0;
+        return this.weight;
     }
 
     @Override
     public String destiny() {
-        return null;
+        return this.destiny;
     }
 
     public String getId() {
