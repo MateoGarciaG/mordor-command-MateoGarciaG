@@ -4,7 +4,7 @@ import org.pinpong.mordorcommand.interfaces.DangerousOrder;
 
 public class ConcreteDangerousOrder implements DangerousOrder {
 
-    private final String id = null;
+    private final String id = this.generatesRandomId();
     private String destiny = null;
     private int weight = 0;
     private String instructions = null;
@@ -13,7 +13,6 @@ public class ConcreteDangerousOrder implements DangerousOrder {
         this.destiny = destiny;
         this.weight = weight;
         this.instructions = instructions;
-        this.id = this.generateRandomId();
     }
 
     @Override

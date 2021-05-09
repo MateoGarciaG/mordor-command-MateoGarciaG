@@ -4,14 +4,13 @@ import org.pinpong.mordorcommand.interfaces.Order;
 
 public class InternationalOrder  implements Order{
 
-    private String id = null;
+    private final String id = this.generatesRandomId();
     private String destiny = null;
     private int weight = 0;
 
     public InternationalOrder(String destiny, int weight) {
         this.destiny = destiny;
         this.weight = weight;
-        this.id = this.generateRandomId();
     }
 
 
