@@ -5,6 +5,8 @@ Depending on whether the order is processed or not, the office processes the ord
 
 As the orders can be of multiple types, many of them still unknown and each with its particularities.
 
+This Project belongs to a serie of projects to practice the most use Design Patter in Java. And This Project is a Task from "Programación" subject.
+
 ## This Project use Command Pattern
 
 
@@ -13,6 +15,11 @@ All branches structure with their commits are in my Repository of my Personal Ac
 
 This repository is to upload the task of this project.
 https://github.com/MateoGarciaG/Mordor-Command-Project
+
+
+Test Cases are from the user @dfleta GitHub. The description of the task of this project that he mentions. It was the test cases cannot be modificated.
+https://github.com/dfleta/mordor-command/blob/master/src/test/java/org/mvpigs/TestPedidos.java
+
 
 [![status application](https://img.shields.io/badge/status-stable-brightgreen)](URL_Proyecto)
 
@@ -67,8 +74,10 @@ Java:
 ---
 
 ## Reflexiones
-
+This project let me know a new Design Patter focused on Behavior to different of other Pattern that are focused on Creation of Objects. The great advantage of this pattern is that let us execute from a criteria how the behavior of the Request is going to be execute. All this from a COMMANDS that do this work of execute and check from a criteria. And after we have a Invoke Class which threat all Commands to execute them.
+Other points to mention:
 - Other point it's that I use my own ID Random generator, it's probably that due to it's random two Order Object have the same ID. So in the future I will change the Random Id generator to use the UUID Class to generate unique ID's.
+- I used Streams Java feature and StringBuilder and Formatter to practice them
 ### Que has mejorado con este proyecto?
 
 

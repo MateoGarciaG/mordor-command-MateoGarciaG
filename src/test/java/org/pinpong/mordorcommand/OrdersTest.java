@@ -27,7 +27,7 @@ import org.pinpong.mordorcommand.treatments.MultipleOrderTreatment;
 import org.pinpong.mordorcommand.treatments.DangerousOrderTreatment;
 
 /**
- * Unit test for simple App.
+ * @author The author of these Test cases are by @dfleta user GitHub
  */
 public class OrdersTest
 {
